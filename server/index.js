@@ -31,6 +31,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/resume', resumeRoutes);
 app.use('/api/ats', require('./routes/atsRoutes'));
 
+// Fallback for serverless/proxy environments that strip the /api prefix
+app.use('/auth', authRoutes);
+app.use('/resume', resumeRoutes);
+app.use('/ats', require('./routes/atsRoutes'));
+
 // 4. Fallback route for unmatched endpoints
 app.use((req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
