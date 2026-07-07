@@ -11,7 +11,7 @@ const app = express();
 
 // 1. Middleware configuration
 app.use(cors({
-  origin: '*', // In production, replace with specific domain
+  origin: process.env.CORS_ORIGIN || '*', // Configure CORS_ORIGIN in production environment variables
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
